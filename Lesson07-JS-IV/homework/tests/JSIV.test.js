@@ -56,16 +56,16 @@ describe('invokeMethod(object, method)', function() {
   });
 });
 
-// describe('multiplyMysteryNumberByFive(mysteryNumberObject)', function() {
-//   it('should return the mysteryNumber property multiplied by five', function() {
-//     const mysteryBox = {
-//       mysteryNumber: 999,
-//     };
-//     expect(multiplyMysteryNumberByFive(mysteryBox)).toBe(4995);
-//     mysteryBox.mysteryNumber = -5;
-//     expect(multiplyMysteryNumberByFive(mysteryBox)).toBe(-25);
-//   });
-// });
+describe('multiplyMysteryNumberByFive(mysteryNumberObject)', function() {
+  it('should return the mysteryNumber property multiplied by five', function() {
+    const mysteryBox = {
+      mysteryNumber: 999,
+    };
+    expect(multiplyMysteryNumberByFive(mysteryBox)).toBe(4995);
+    mysteryBox.mysteryNumber = -5;
+    expect(multiplyMysteryNumberByFive(mysteryBox)).toBe(-25);
+  });
+});
 
 describe('deleteProperty(object, property)', function() {
   it('should delete the property from the object', function() {
