@@ -6,19 +6,30 @@
 // the constructor should have a method 'sayHi' on its prototype that returns the string 'Hello, my name is {{name}}'
 // {{name}} should be the name set on each instance
 // return the class
-function createUserClass(username, name, email, password) {
+function createUserClass() {
+    //user is an object consturcturo -- that constucts objects 
+    return User;
+}
+
+// pass in objrct and then pull things out of that Object in the params 
+function User(username, name, email, password) {
     this.username = username;
     this.name = name;
     this.email = email;
     this.password = password;
 }
 
-createUserClass.prototype.sayHi = function() {
+User.prototype.sayHi = function() {
     return `Hello, my name is ${this.name}`;
 };
 
-const user = new createUserClass('amyh', 'amy', 'amy@ex.com', 'expassword');
+//createUserClass() returns the User constructor that is assigned to a var, userConstructor
+const userConstructor = createUserClass();
+//Assign user to a new user object
+const user = new userConstructor();
 user.sayHi();
+
+
 
 
 
