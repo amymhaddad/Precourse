@@ -3,55 +3,40 @@
 // x and y are integers.  Return the larger integer
 // if they are the same return either one
 function getBiggest(x, y) {
-  if (x > y) {
-    return x;
-  }
-  else if (x < y) {
-    return y;
-  }
-  else if (x === y) {
-    return x || y;
-  }
+    return x > y ? x:y;
 }
 
 // language: 'Mandarin' -> 'Ni Hao!'
 // language: 'Spanish' -> 'Hola!'
 // if language is undefined return 'Hello!'
 function greeting(language) {
-  const greetingsFriends = {
-    'German': 'Guten Tag!',
-    'Mandarin': 'Ni Hao!',
-    'Spanish': 'Hola!',
-  };
-  
-  if (language in greetingsFriends) {
-    return greetingsFriends[language];
-  }
-  else {
-    return 'Hello!';
-  }
+   switch(language) {
+       case 'German':
+           return 'Guten Tag!';
+        case 'Mandarin':
+            return 'Ni Hao!';
+        case 'Spanish': 
+            return 'Hola!';
+    default:
+        return 'Hello!';
+   }
 }
 
 // return true if num is 10 or 5
   // otherwise return false
 function isTenOrFive(num) {
-  if (num === 10 || num === 5) {
-    return true;
-  }
-  else {
-    return false;
-  }
+   return num === 5 || num === 10;
 }
 
 
 // return true if num is less than 50 and greater than 20
 // otherwise return false
 function isInRange(num) {
-  return num < 50 && num > 20;
+    return num < 50 && num > 20;
 }
 
 function isInteger(num) {
-  return Number.isInteger(num);
+    return Number.isInteger(num);
 }
 
 
@@ -60,43 +45,28 @@ function isInteger(num) {
 // if num is divisible by 3 & 5 return 'fizzbuzz'
 // otherwise return num
 function fizzBuzz(num) {
+    let newWord = '';
 
-  if (num % 3 === 0 && num % 5 === 0) {
-    return 'fizzbuzz';
-  }
-  else if (num % 3 === 0) {
-    return 'fizz';
-  }
-  else if (num % 5 === 0) {
-    return 'buzz';
-  }
-  else {
-    return num;
-  }
+    if (num % 3 === 0) {
+        newWord += 'fizz';
+    }
+    if (num % 5 === 0) {
+        newWord += 'buzz';  
+    }
+    return newWord || num;
 }
 
+
 function isPrime(num) {
-  const range = [];
-  for (let i=1; i <= num; i++) {
-      range.push(i);
-  }
-
-  let factors = [];
-  for (let outerNum of range) {
-      for (let innerNum of range.slice(1)) {
-          if (outerNum * innerNum === num) {
-              factors.push(outerNum, innerNum);
-          }
-      }
-  }
-
-  if (factors.length > 2 || num === 0 || num === 1) {
+    if (num == 0 || num == 1)
     return false;
-  }
-  else {
-    return true;
+
+  for (let i = 2; i < num-1; i++) {
+    if (num % i == 0)
+      return false;
   }
 
+  return true;
 }
 
 
