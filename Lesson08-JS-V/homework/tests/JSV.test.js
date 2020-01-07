@@ -16,21 +16,21 @@ describe('createUserClass()', function() {
 	});
 });
 
-// describe('addPrototypeMethod(Constructor)', function() {
-// 	it('should add the method sayHi to the constructor', function() {
-// 		function Test() {
-// 			this.test = true;
-// 		}
-// 		addPrototypeMethod(Test);
-// 		const test = new Test();
-// 		expect(test.sayHi()).toBe('Hello World!');
-// 	});
-// });
+describe('addPrototypeMethod(Constructor)', function() {
+	it('should add the method sayHi to the constructor', function() {
+		function Test() {
+			this.test = true;
+		}
+		addPrototypeMethod(Test);
+		const test = new Test();
+		expect(test.sayHi()).toBe('Hello World!');
+	});
+});
 
-// describe('addReverseString(StringPrototype)', function(){
-// 	it('should add a reverse string method to the String prototype that returns a reversed version of the string', function() {
-// 		addReverseString();
-// 		const str = 'Hello';
-// 		expect(str.reverse()).toBe('olleH');
-// 	});
-// });
+describe('addReverseString(StringPrototype)', function(){
+	it('should add a reverse string method to the String prototype that returns a reversed version of the string', function() {
+		addReverseString();
+		const str = 'Hello';
+		expect(str.reverse()).toBe('olleH');
+	});
+});
