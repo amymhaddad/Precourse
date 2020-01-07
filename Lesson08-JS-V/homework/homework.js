@@ -7,43 +7,72 @@
 // {{name}} should be the name set on each instance
 // return the class
 function createUserClass() {
-    //user is an object consturcturo -- that constucts objects 
-    return User;
+//     return User;
 }
 
-// pass in objrct and then pull things out of that Object in the params 
-function User(username, name, email, password) {
-    this.username = username;
-    this.name = name;
-    this.email = email;
-    this.password = password;
-}
-
-User.prototype.sayHi = function() {
-    return `Hello, my name is ${this.name}`;
-};
-
-//createUserClass() returns the User constructor that is assigned to a var, userConstructor
-const userConstructor = createUserClass();
-//Assign user to a new user object
-const user = new userConstructor();
-user.sayHi();
+// User.prototype.sayHi = function() {
+//     return `Hello, my name is ${this.name}`;
+// };
 
 
+// function User (username, name, email, password) {
+//   this.username = username;
+//   this.name = name;
+//   this.email = email;
+//   this.password = password;
+// }
 
+// const userConstructor = createUserClass();
+// const user = new userConstructor;
+// user.sayHi();
+
+
+// function createUserClass() {
+//   return User;
+// }
+
+// class User {
+//   constructor(username, name, email, password) {
+//       this.username = username;
+//       this.name = name;
+//       this.email = email;
+//       this.password = password;
+//   }
+//   sayHi(){
+//       `Hello, my name is ${this.name}`;
+//   }
+// }
+
+
+// const userConstructor = createUserClass();
+// const user = new userConstructor();
+// user.sayHi();
 
 
 function addPrototypeMethod(Constructor) {
-  // add a method to the constructor's prototype
-  // the method should be called 'sayHi' and should return the string 'Hello World!'
+    Constructor.prototype.sayHi = function(){
+        return 'Hello World!';
+    };
 }
 
+
+// add a method to the string constructor's prototype that returns a reversed copy of the string
+// name this method reverse
+// hint:
+// you will need to use 'this' inside of reverse
+// function addReverseString() {
+// }
+
 function addReverseString() {
-  // add a method to the string constructor's prototype that returns a reversed copy of the string
-  // name this method reverse
-  // hint:
-  // you will need to use 'this' inside of reverse
+    let listWord = [];
+    for (let i=this.string.length-1; i >=0; i--){
+        listWord.push(this.string[i]);
+    }
+    return listWord.join('');
 }
+
+String.prototype.reverse = function addReverseString(){};
+
 
 // Do not modify code below this line.
 // --------------------------------
