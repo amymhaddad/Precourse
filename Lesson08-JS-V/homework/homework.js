@@ -1,5 +1,9 @@
 // Do not change any of the function names
 
+
+//PROBLEM 1 - VERSION 1
+//Error for both versions: createUserClass() › should return a user constructor that correctly builds user objects
+
 // create an ES6 class or a constructor function called User
 // it should accept an options object with username, name, email, and password properties
 // in the constructor set the username, name, email, and password properties
@@ -7,54 +11,57 @@
 // {{name}} should be the name set on each instance
 // return the class
 function createUserClass() {
-//     return User;
+    return User;
 }
 
-// User.prototype.sayHi = function() {
-//     return `Hello, my name is ${this.name}`;
-// };
+User.prototype.sayHi = function() {
+    return `Hello, my name is ${this.name}`;
+};
 
 
-// function User (username, name, email, password) {
-//   this.username = username;
-//   this.name = name;
-//   this.email = email;
-//   this.password = password;
-// }
+function User (username, name, email, password) {
+  this.username = username;
+  this.name = name;
+  this.email = email;
+  this.password = password;
+}
 
-// const userConstructor = createUserClass();
-// const user = new userConstructor;
-// user.sayHi();
-
-
-// function createUserClass() {
-//   return User;
-// }
-
-// class User {
-//   constructor(username, name, email, password) {
-//       this.username = username;
-//       this.name = name;
-//       this.email = email;
-//       this.password = password;
-//   }
-//   sayHi(){
-//       `Hello, my name is ${this.name}`;
-//   }
-// }
+const userConstructor = createUserClass();
+const user = new userConstructor;
+user.sayHi();
 
 
+// PROBLEM 1 - VERSION 2 -- using class with same error about the constructor object 
+function createUserClass() {
+  return User;
+}
+
+class User {
+  constructor(username, name, email, password) {
+      this.username = username;
+      this.name = name;
+      this.email = email;
+      this.password = password;
+  }
+  sayHi(){
+      `Hello, my name is ${this.name}`;
+  }
+}
+
+
+//PROBLEM 2 --> this works
 // const userConstructor = createUserClass();
 // const user = new userConstructor();
 // user.sayHi();
-
-
 function addPrototypeMethod(Constructor) {
     Constructor.prototype.sayHi = function(){
         return 'Hello World!';
     };
 }
 
+
+//PROBLEM 3 
+//Error: addReverseString(StringPrototype) › should add a reverse string method to the String prototype that returns a reversed version of the string
 
 // add a method to the string constructor's prototype that returns a reversed copy of the string
 // name this method reverse
