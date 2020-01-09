@@ -1,10 +1,15 @@
 // Do not change any of the function names
 
+
+// Return a function that when invoked increments and returns a counter variable.
+// Example: const newCounter = counter();
+// newCounter(); // 1
+// newCounter(); // 2
 function counter() {
-  // Return a function that when invoked increments and returns a counter variable.
-  // Example: const newCounter = counter();
-  // newCounter(); // 1
-  // newCounter(); // 2
+  let count = 0;
+  return function(){
+      return count += 1;
+  };
 }
 
 function cacheFunction(cb) {
