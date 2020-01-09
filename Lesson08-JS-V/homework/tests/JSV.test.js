@@ -5,16 +5,16 @@ const {
   addReverseString,
 } = require('../homework');
 
-// describe('createUserClass()', function() {
-// 	it('should return a user constructor that correctly builds user objects', function() {
-// 		const User = createUserClass();
-// 		const user = new User({username: 'SunJieMing', name: 'Ben', email: 'ben@lambdaschool.com', password: 'LS Rocks!' });
-// 		expect(user.username).toBe('SunJieMing');
-// 		expect(user.name).toBe('Ben');
-// 		expect(user.email).toBe('ben@lambdaschool.com');
-// 		expect(user.password).toBe('LS Rocks!');
-// 	});
-// });
+describe('createUserClass()', function() {
+	it('should return a user constructor that correctly builds user objects', function() {
+		const User = createUserClass();
+		const user = new User({username: 'SunJieMing', name: 'Ben', email: 'ben@lambdaschool.com', password: 'LS Rocks!' });
+		expect(user.username).toBe('SunJieMing');
+		expect(user.name).toBe('Ben');
+		expect(user.email).toBe('ben@lambdaschool.com');
+		expect(user.password).toBe('LS Rocks!');
+	});
+});
 
 describe('addPrototypeMethod(Constructor)', function() {
 	it('should add the method sayHi to the constructor', function() {
