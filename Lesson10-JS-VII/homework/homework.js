@@ -27,6 +27,7 @@ function counter() {
   // if the function you return is invoked again with 5 it will look on an object in the closure scope
   // and return 25 directly and will not invoke cb again
 
+  //should cache function results 
   function cacheFunction(cb) {
     let cache = {};
 
@@ -34,12 +35,12 @@ function counter() {
         if (cache[argumentForCb]){
             return cache[argumentForCb];
         }
+        
         else {
             cache[argumentForCb] = cb(argumentForCb);
             return cache[argumentForCb];
         }
-    }
-     
+      }   
 }
 
 
