@@ -31,17 +31,26 @@ function counter() {
   function cacheFunction(cb) {
     let cache = {};
 
+    //a better way to be in cache other than 0 
+    // testing wrong thing with if statement 
+
     return function(argumentForCb) {
+      
+      // cb(argumentForCb);
         if (cache[argumentForCb]){
+          console.log('In cache: ', argumentForCb)
             return cache[argumentForCb];
         }
         
         else {
+            console.log('Cache: ', cache)
+            console.log('Not In cache: ', argumentForCb)
             cache[argumentForCb] = cb(argumentForCb);
             return cache[argumentForCb];
         }
       }   
-}
+    }
+// const newAdd = cacheFunction(cb);
 
 
     
