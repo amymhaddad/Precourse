@@ -3,6 +3,7 @@
 */
 
 // code here
+const toDoItems = [];
 
 /* 
   STEP 1: There is a span element currently on the page with the innerHTML of 'This app was created by:',
@@ -10,7 +11,9 @@
           add your name to the END of the current innerHTML.
 */
 
-// code here
+ 
+const createdBy = document.querySelector("#createdBy");
+createdBy.innerHTML += " Amy Haddad";
 
 /* 
   STEP 2: Create a class called 'ToDo'.  The constructor should have one string parameter called description, the description of the toDo.
@@ -18,8 +21,9 @@
           'complete' which should be set to false. Hint: use the 'this' keyword in the constructor function.
 */
 
-function ToDo () {
-  // code here
+function ToDo (description) {
+    this.description = description;
+    this.complete = false; 
 }
 
 /* 
@@ -28,7 +32,9 @@ function ToDo () {
           Inside the function set the ToDo's 'complete' property to true.
 */
 
-// code here
+ToDo.prototype.completeToDo = function(){
+    this.complete = true;
+}
 
 /*
   STEP 4: This function, buildToDo, will have two parameters.  The first is an object of class ToDo and 
@@ -38,16 +44,39 @@ function ToDo () {
             1.) Create a new 'div' element. Set this to a variable 'toDoShell'.
             2.) Give 'toDoShell' a class (for CSS) of 'toDoShell'.
             3.) Create a new 'span' element. Set this to a variable called 'toDoText'.
+
             4.) Using the toDo item passed in, set the 'toDoText' innerHTML to the value of the 'description' property on the toDo object.
             5.) Set the id of 'toDoText' to the value of the index argument.
+
             6.) Using an if statement, check to see if the 'complete' property on the object passed as the first argument 
                   is set to true. If it is, give 'toDoText' a CSS class of 'completeText'. If it is not, do not give it a class.
             7.) Append child 'toDoText' to 'toDoShell'
             8.) return toDoShell
+
+            n the 'buildToDo' function add a 'click' event listener to the 'toDoText' element, and pass this function as the callback.
 */
 
 function buildToDo(todo, index) {
-  // code here
+    const toDoShell = document.createElement('div');
+    toDoShell.className = 'toDoShell';
+
+    const toDoText = document.createElement('span');
+    toDoText.innerHTML = todo.description
+    
+    toDoText.setAttribute('id', index)
+
+    toDoText.onclick = function() {
+        completeToDo(index);
+    };
+
+    
+    if (todo.complete) {
+      todo.className = 'index';
+    }
+
+    toDoText.appendChild(toDoShell);
+    return toDoShell;
+
 }
 
 /* 
@@ -57,8 +86,14 @@ function buildToDo(todo, index) {
 */
 
 function buildToDos(toDos) {
-  // code here
+
+    let newTodos = toDos.map((val, index, toDos) => {
+        return buildToDo(val, index)
+    });
+    return newTodos;
+
 }
+
 
 /* 
   STEP 6: Now that we can build an array of toDo elements, we want to make these elements appear on the screen, 
@@ -66,14 +101,27 @@ function buildToDos(toDos) {
           1.) Select the element with the id 'toDoContainer'.  Save this to a variable: 'toDoContainer'.
           2.) Set the innerHTML of 'toDoContainer' to an empty string. (This will let us refresh the elements, and display the new toDos)
           3.) Using the buildToDos function pass it the array toDoItems as it's only argument.
+
           4.) Using the result of (3), loop over the array appending each element to 'toDoContainer'.
+
           5.) at the very end of this file, the line before the comment "DO NOT CHANGE ANY CODE BELOW THIS LINE", call this function.
 
           You can now load your html file in your broswer and see your work so far.
 */
 
 function displayToDos() {
-  // code here
+    const toDoContainer = document.querySelector('#toDoContainer');
+
+    toDoContainer.innerHTML = '';
+
+    const todos = buildToDos(toDoItems);
+
+    for (let item of todos){
+        toDoContainer.appendChild(item);
+    }
+    
+    return toDoContainer;
+
 }
 
 /* 
@@ -83,13 +131,19 @@ function displayToDos() {
           the text box on the page.
 
           1.) Using the value property on 'newToDo', create an new ToDo object using the ToDo class and pass the value as the description.
+
           2.) add the object from (1) into the toDoItems array.
+
           3.) Set the value of newToDo to an empty string (this will clear the text in the box allowing the user to enter another item).
           4.) Call displayToDos to refresh the toDos displayed
 */
 
 function addToDo() {
-  // code here
+    const description = document.getElementById('toDoInput').value;
+    const newToDo = new ToDo(description);
+    toDoItems.push(newToDo);
+    return displayToDos();
+
 }
 
 /* 
@@ -98,7 +152,11 @@ function addToDo() {
           2.) Add a 'click' event listener to this element, passing it the addToDo function as a callback
 */
 
-// cod here
+    const element = document.getElementById('addButton');
+    element.onclick = function() {
+        addToDo(element);
+    }
+
 
 /* 
   STEP 9: Finally in this step we will define the function to run when we want to compelte a toDo, and add that function to the click event
@@ -109,14 +167,14 @@ function addToDo() {
           index of the item that called it. We have given you that code, study it to make sure you understand what is happening.
 
           1.) Using the index supplied, call completeToDo on the item which called it from toDoItems.
+
           2.) call displayToDos to refresh to items on the screen.
           3.) In the 'buildToDo' function add a 'click' event listener to the 'toDoText' element, and pass this function as the callback.
 */
 
 function completeToDo(event) {
-  // UNCOMMENT THE NEXT LINE
-  // const index = event.target.id;
-  // code here
+  const index = event.target.id;
+  displayToDos();
 }
 
 /* STEP 10: Make sure ALL tests pass */
@@ -136,7 +194,7 @@ function completeToDo(event) {
 
 
 // Call displayToDos here (Step 6)<-----
-
+displayToDos();
 
 // ---------------------------- DO NOT CHANGE ANY CODE BELOW THIS LINE ----------------------------- //
 if (typeof module !== 'undefined') {
