@@ -13,8 +13,6 @@ function counter() {
 }
 
 
-  // use closure to create a cache for the cb function 
-
   // the function that you return should accept a single argument and invoke cb with that argument
   // when the function you return is invoked with an argument it should save that argument and its result
   // when the function you return is called again with an argument that it has seen before it should not call cb
@@ -27,13 +25,12 @@ function counter() {
   // if the function you return is invoked again with 5 it will look on an object in the closure scope
   // and return 25 directly and will not invoke cb again
 
-  //should cache function results 
   function cacheFunction(cb) {
     let cache = {};
 
     return function(argumentForCb) {
-        if (cache[argumentForCb]){
-            return cache[argumentForCb];
+        if (cache.hasOwnProperty(argumentForCb)){
+          return cache[argumentForCb]
         }
         
         else {
@@ -41,12 +38,12 @@ function counter() {
             return cache[argumentForCb];
         }
       }   
-}
-
+    }
 
     
 
- 
+
+    
 
 // Do not modify code below this line.
 // --------------------------------
