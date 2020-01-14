@@ -27,36 +27,22 @@ function counter() {
   // if the function you return is invoked again with 5 it will look on an object in the closure scope
   // and return 25 directly and will not invoke cb again
 
-  //should cache function results 
   function cacheFunction(cb) {
     let cache = {};
 
-
     return function(argumentForCb) {
-      
-        // const result = (argumentForCb == true ? cache[argumentForCb] : cache[argumentForCb] = argumentForCb);
-         
-    
-        if (argumentForCb && cache.argumentForCb == undefined){
-            cache[argumentForCb] = argumentForCb
-            console.log('In cache', cache )
-          return cb(argumentForCb)
-
+        if (cache.hasOwnProperty(argumentForCb)){
+          return cache[argumentForCb]
         }
         
         else {
-            console.log('add to cache', cache[argumentForCb])
-          
+            cache[argumentForCb] = cb(argumentForCb);
             return cache[argumentForCb];
         }
       }   
     }
-// const newAdd = cacheFunction(cb);
-
 
     
-
- 
 
 // Do not modify code below this line.
 // --------------------------------
