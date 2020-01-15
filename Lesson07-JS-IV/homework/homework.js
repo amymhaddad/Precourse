@@ -56,12 +56,7 @@ function newUser(name, email, password) {
 // return true if the user has a value for the property 'email'
 // otherwise return false
 function hasEmail(user) {
-    if (('email' in user) && (user['email'] !== null)) {
-        return true;
-    }
-    else {
-        return false;
-    } 
+    return !!user.email;
 }
 
 
@@ -69,9 +64,7 @@ function hasEmail(user) {
 // property is a string
 // otherwise return false
 function hasProperty(object, property) {
-    for (let items in object) {
-        return object[items] === object[property];
-    }
+    return object.hasOwnProperty(property);
 }
 
 // check to see if the provided password matches the password property on the user object
@@ -103,11 +96,10 @@ function addFriend(user, newFriend) {
 // set each user's isPremium property to true
 // return the users array
 function setUsersToPremium(users) {
-    for (let user of users) {
+    users.forEach(user => {
         user.isPremium = true;
-    }
+    });
     return users;
-
 }
 
 // user has an array property called 'posts'
@@ -116,12 +108,11 @@ function setUsersToPremium(users) {
 // sum together the likes from all the post objects
 // return the sum
 function sumUserPostLikes(user) {
-    let totalLikes = 0;
-    for (let totals of user['posts']){
-        totalLikes += totals.likes;
-    }
-    return totalLikes;
-}
+    let postLikes = user.posts.reduce((acc, curr) => {
+        return acc + curr.likes;
+    }, 0);
+    return postLikes;  
+ }
 
 
 // add a method to the storeItem object called 'calculateDiscountPrice'
@@ -134,12 +125,11 @@ function sumUserPostLikes(user) {
 // discountPrice = 20 - (20 * .2)
 function addCalculateDiscountPriceMethod(storeItem) {
 
-    storeItem['calculateDiscountPrice'] = function() {
-        let calc = storeItem.price - (this.price * this.discountPercentage);
-        return calc;
+    storeItem.calculateDiscountPrice = function () {
+        let discount = this.price * this.discountPercentage;
+        return this.price - discount;
     };
-    return storeItem; 
-  
+    return storeItem;
 }
 
 // Do not modify code below this line.
